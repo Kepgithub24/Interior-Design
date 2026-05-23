@@ -41,6 +41,36 @@
   --card-border:     rgba(201, 150, 58, 0.30);
   --nav-bg-scrolled: rgba(250, 245, 233, 0.97);
 
+  /* ── Semantic colours ── */
+  --error:           #b83c27;
+  --error-dark:      #8B2A1A;
+
+  /* ── Transparent cream tints (for glass / on-dark elements) ── */
+  --mcm-cream-07:    rgba(245, 239, 224, 0.07);
+  --mcm-cream-10:    rgba(245, 239, 224, 0.10);
+  --mcm-cream-55:    rgba(245, 239, 224, 0.55);
+  --mcm-cream-60:    rgba(245, 239, 224, 0.60);
+  --mcm-cream-80:    rgba(245, 239, 224, 0.80);
+  --mcm-cream-85:    rgba(245, 239, 224, 0.85);
+  --mcm-cream-88:    rgba(245, 239, 224, 0.88);
+  --mcm-cream-90:    rgba(245, 239, 224, 0.90);
+
+  /* ── Transparent amber tints ── */
+  --mcm-amber-10:    rgba(201, 150, 58, 0.10);
+  --mcm-amber-15:    rgba(201, 150, 58, 0.15);
+  --mcm-amber-24:    rgba(201, 150, 58, 0.24);
+  --mcm-amber-25:    rgba(201, 150, 58, 0.25);
+  --mcm-amber-45:    rgba(201, 150, 58, 0.45);
+  --mcm-amber-65:    rgba(201, 150, 58, 0.65);
+
+  /* ── Transparent teak tints (dividers / hover shadows) ── */
+  --mcm-teak-06:     rgba(92, 61, 30, 0.06);
+
+  /* ── Transparent parchment tints (footer on-dark text) ── */
+  --mcm-parchment-28: rgba(232, 213, 176, 0.28);
+  --mcm-parchment-50: rgba(232, 213, 176, 0.50);
+  --mcm-parchment-58: rgba(232, 213, 176, 0.58);
+
   /* ── Warm shadows ── */
   --shadow-sm:       0 2px 12px rgba(92, 61, 30, 0.09);
   --shadow:          0 8px 32px rgba(92, 61, 30, 0.13);
@@ -282,11 +312,11 @@ h1, h2, h3, h4 {
 .btn-outline {
   background: transparent;
   color: var(--mcm-cream);
-  border: 1.5px solid rgba(245, 239, 224, 0.60);
+  border: 1.5px solid var(--mcm-cream-60);
 }
 
 .btn-outline:hover {
-  background: rgba(245, 239, 224, 0.10);
+  background: var(--mcm-cream-10);
   border-color: var(--mcm-cream);
   transform: translateY(-2px);
 }
@@ -348,7 +378,7 @@ h1, h2, h3, h4 {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(245, 239, 224, 0.88);
+  color: var(--mcm-cream-88);
   position: relative;
   padding-bottom: 2px;
 }
@@ -381,7 +411,7 @@ h1, h2, h3, h4 {
   background: none;
   border: none;
   cursor: pointer;
-  color: rgba(245, 239, 224, 0.88);
+  color: var(--mcm-cream-88);
   display: flex;
   align-items: center;
   padding: 0.25rem;
@@ -391,6 +421,12 @@ h1, h2, h3, h4 {
 
 .navbar.scrolled .theme-toggle { color: var(--mcm-charcoal); }
 .theme-toggle svg { width: 20px; height: 20px; }
+
+.theme-toggle:focus-visible,
+.hamburger:focus-visible {
+  outline: 2px solid var(--mcm-amber);
+  outline-offset: 3px;
+}
 
 .icon-sun { display: none; }
 [data-theme="dark"] .icon-moon { display: none; }
@@ -410,7 +446,7 @@ h1, h2, h3, h4 {
   display: block;
   width: 24px;
   height: 1.5px;
-  background: rgba(245, 239, 224, 0.9);
+  background: var(--mcm-cream-90);
   border-radius: 2px;
   transition: all var(--transition);
 }
@@ -511,7 +547,7 @@ h1, h2, h3, h4 {
 .hero-sub {
   font-family: var(--font-body);
   font-size: clamp(1rem, 1.8vw, 1.175rem);
-  color: rgba(245, 239, 224, 0.80);
+  color: var(--mcm-cream-80);
   max-width: 540px;
   margin: 0 auto 3rem;
   line-height: 1.85;
@@ -537,7 +573,7 @@ h1, h2, h3, h4 {
   display: block;
   width: 1px;
   height: 64px;
-  background: linear-gradient(to bottom, transparent, rgba(201, 150, 58, 0.65));
+  background: linear-gradient(to bottom, transparent, var(--mcm-amber-65));
   animation: scrollPulse 2.2s ease infinite;
 }
 
@@ -695,6 +731,11 @@ h1, h2, h3, h4 {
   color: var(--mcm-cream);
 }
 
+.filter-btn:focus-visible {
+  outline: 2px solid var(--mcm-sienna);
+  outline-offset: 3px;
+}
+
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -725,6 +766,11 @@ h1, h2, h3, h4 {
 
 .portfolio-item:hover {
   box-shadow: 0 12px 40px rgba(92, 61, 30, 0.22);
+}
+
+.portfolio-item:focus-visible {
+  outline: 2px solid var(--mcm-amber);
+  outline-offset: 3px;
 }
 
 /* Warm teak-to-transparent overlay */
@@ -820,7 +866,7 @@ h1, h2, h3, h4 {
 /* Testimonial card — warm glass on teak */
 .testimonial-card {
   display: none;
-  background: rgba(255, 255, 255, 0.07);
+  background: var(--mcm-cream-07);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(201, 150, 58, 0.28);
@@ -886,7 +932,7 @@ h1, h2, h3, h4 {
 .carousel-btn {
   width: 42px;
   height: 42px;
-  border: 1.5px solid rgba(201, 150, 58, 0.45);
+  border: 1.5px solid var(--mcm-amber-45);
   border-radius: 50%;
   background: transparent;
   cursor: pointer;
@@ -901,6 +947,11 @@ h1, h2, h3, h4 {
   background: var(--mcm-amber);
   border-color: var(--mcm-amber);
   color: var(--mcm-teak);
+}
+
+.carousel-btn:focus-visible {
+  outline: 2px solid var(--mcm-amber);
+  outline-offset: 3px;
 }
 
 .carousel-btn svg { width: 18px; height: 18px; }
@@ -1011,7 +1062,7 @@ h1, h2, h3, h4 {
   padding: 0.875rem 1rem;
   border: 1.5px solid var(--card-border);
   border-radius: 2px;
-  background: rgba(245, 239, 224, 0.55);
+  background: var(--mcm-cream-55);
   color: var(--dark);
   font-family: var(--font-body);
   font-size: 0.9375rem;
@@ -1028,7 +1079,7 @@ h1, h2, h3, h4 {
 .form-group textarea:focus {
   border-color: var(--mcm-sienna);
   box-shadow: 0 0 0 3px rgba(212, 98, 42, 0.12);
-  background: rgba(245, 239, 224, 0.85);
+  background: var(--mcm-cream-85);
 }
 
 [data-theme="dark"] .form-group input:focus,
@@ -1049,7 +1100,7 @@ h1, h2, h3, h4 {
 
 .form-group input.error,
 .form-group textarea.error {
-  border-color: #b83c27;
+  border-color: var(--error);
 }
 
 .field-error {
@@ -1057,7 +1108,7 @@ h1, h2, h3, h4 {
   font-family: var(--font-ui);
   font-size: 0.68rem;
   letter-spacing: 0.06em;
-  color: #b83c27;
+  color: var(--error);
   margin-top: 0.4rem;
   min-height: 1.1em;
 }
@@ -1105,14 +1156,14 @@ svg.spin {
 }
 
 .toast.success { background: var(--mcm-olive);   color: var(--mcm-cream); }
-.toast.error   { background: #8B2A1A;             color: var(--mcm-cream); }
+.toast.error   { background: var(--error-dark);   color: var(--mcm-cream); }
 
 /* =====================
    FOOTER
    ===================== */
 .footer {
   background: var(--mcm-charcoal);
-  color: rgba(232, 213, 176, 0.58);
+  color: var(--mcm-parchment-58);
   padding: 5.5rem 0 2.5rem;
 }
 
@@ -1145,19 +1196,24 @@ svg.spin {
 .social-link {
   width: 38px;
   height: 38px;
-  border: 1px solid rgba(201, 150, 58, 0.25);
+  border: 1px solid var(--mcm-amber-25);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(232, 213, 176, 0.5);
+  color: var(--mcm-parchment-50);
   transition: all var(--transition);
 }
 
 .social-link:hover {
   border-color: var(--mcm-amber);
   color: var(--mcm-amber);
-  background: rgba(201, 150, 58, 0.10);
+  background: var(--mcm-amber-10);
+}
+
+.social-link:focus-visible {
+  outline: 2px solid var(--mcm-amber);
+  outline-offset: 3px;
 }
 
 .social-link svg { width: 16px; height: 16px; }
@@ -1179,7 +1235,7 @@ svg.spin {
 .footer-contact a {
   font-family: var(--font-body);
   font-size: 0.9375rem;
-  color: rgba(232, 213, 176, 0.50);
+  color: var(--mcm-parchment-50);
 }
 
 .footer-links a:hover,
@@ -1193,14 +1249,14 @@ svg.spin {
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(201, 150, 58, 0.15);
+  border-top: 1px solid var(--mcm-amber-15);
   padding-top: 2rem;
   text-align: center;
   font-family: var(--font-ui);
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(232, 213, 176, 0.28);
+  color: var(--mcm-parchment-28);
 }
 
 /* =====================
@@ -1228,8 +1284,8 @@ svg.spin {
   right: 1.5rem;
   width: 46px;
   height: 46px;
-  background: rgba(201, 150, 58, 0.10);
-  border: 1px solid rgba(201, 150, 58, 0.30);
+  background: var(--mcm-amber-10);
+  border: 1px solid var(--card-border);
   border-radius: 50%;
   cursor: pointer;
   color: var(--mcm-amber);
@@ -1239,7 +1295,7 @@ svg.spin {
   transition: background var(--transition);
 }
 
-.lightbox-close:hover { background: rgba(201, 150, 58, 0.24); }
+.lightbox-close:hover { background: var(--mcm-amber-24); }
 .lightbox-close svg { width: 20px; height: 20px; }
 
 #lightboxImg {
@@ -1277,7 +1333,7 @@ svg.spin {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--mcm-cream);
   box-shadow: 0 4px 18px rgba(37, 211, 102, 0.38);
   z-index: 998;
   transition: transform var(--transition), box-shadow var(--transition);
@@ -1381,11 +1437,11 @@ svg.spin {
   .nav-links.open { display: flex; }
 
   .nav-links li {
-    border-bottom: 1px solid rgba(92, 61, 30, 0.06);
+    border-bottom: 1px solid var(--mcm-teak-06);
   }
 
   [data-theme="dark"] .nav-links li {
-    border-color: rgba(201, 150, 58, 0.08);
+    border-color: var(--mcm-amber-10);
   }
 
   .nav-link {

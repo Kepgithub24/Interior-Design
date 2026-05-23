@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('section[id]');
   const navItems = document.querySelectorAll('.nav-link');
 
-  new IntersectionObserver(entries => {
+  const navObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         navItems.forEach(link => {
@@ -77,20 +77,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     });
-  }, { rootMargin: '-40% 0px -55% 0px' }).observe
-    ? (() => {
-        const obs = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              navItems.forEach(link => {
-                link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
-              });
-            }
-          });
-        }, { rootMargin: '-40% 0px -55% 0px' });
-        sections.forEach(s => obs.observe(s));
-      })()
-    : null;
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  sections.forEach(s => navObserver.observe(s));
 
   /* =====================
      FADE-IN ON SCROLL
@@ -324,6 +313,18 @@ document.addEventListener('DOMContentLoaded', () => {
     return valid;
   };
 
+  const speakConfirmation = () => {
+    if (!window.speechSynthesis) return;
+    const msg = new SpeechSynthesisUtterance(
+      'Thank you for your interest. One of our design fairies will be in touch with you in the next 7 days. ' +
+      'If not, pls submit your inquiry again, and again.'
+    );
+    msg.rate  = 0.92;
+    msg.pitch = 1.05;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(msg);
+  };
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!validateAll()) {
@@ -362,6 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast('✓ Enquiry sent! We\'ll be in touch within 24 hours.', 'success');
         form.reset();
         Object.keys(rules).forEach(k => clearError(k));
+        speakConfirmation();
       } else {
         throw new Error('FormSubmit returned unsuccessful');
       }
